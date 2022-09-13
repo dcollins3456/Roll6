@@ -103,8 +103,6 @@ async def resistroll(interaction: Interaction, number:int):
     
     await interaction.response.send_message(f'RESIST ROLL:\n{res} {result}')
 
-
-
 with open("token.0", "r", encoding="utf-8") as f:
     botkey = f.read()
 
