@@ -2,7 +2,14 @@ from unittest import result
 import nextcord
 from nextcord import Interaction
 from nextcord.ext import commands
+
+import os
+from dotenv import load_dotenv
+
 import random
+
+load_dotenv()
+botkey = os.getenv("DISCORD_TOKEN")
 
 intents = nextcord.Intents.default()
 
@@ -113,7 +120,9 @@ async def resistroll(interaction: Interaction, number:int):
     
     await interaction.response.send_message(f'RESIST ROLL:\n{res} {result}')
 
-with open("token.0", "r", encoding="utf-8") as f:
-    botkey = f.read()
+#with open("token.0", "r", encoding="utf-8") as f:
+#botkey = f.read()
+
+
 
 client.run(botkey)
