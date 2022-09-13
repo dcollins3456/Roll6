@@ -2,12 +2,9 @@ from unittest import result
 import nextcord
 from nextcord import Interaction
 from nextcord.ext import commands
-import os
 import random
 
 intents = nextcord.Intents.default()
-intents.members = True
-intents.message_content = True
 
 client = commands.Bot(command_prefix = "!", intents=intents)
 
@@ -19,9 +16,14 @@ async def on_ready():
 @client.slash_command(name="action", description="Make an Action Roll")
 async def actionroll(interaction: Interaction, number:int):
     result = []
-    res = "Your result: "
+    res = ""
+    #If rolling a 0, need to roll two dice
     if number < 1:
         num = 2
+    #Limit input to 200 max, so as not to break any servers:    
+    elif number > 200:
+        num = 200
+        res = "Limiting to 200 dice: "
     else:
         num = number
     for i in range(num):
@@ -51,6 +53,10 @@ async def actionroll(interaction: Interaction, number:int):
     res = "Your result: "
     if number < 1:
         num = 2
+    #Limit input to 200 max, so as not to break any servers:    
+    elif number > 200:
+        num = 200  
+        res = "(Limiting to 200 dice): "  
     else:
         num = number
     for i in range(num):
@@ -80,6 +86,10 @@ async def resistroll(interaction: Interaction, number:int):
     res = ""
     if number < 1:
         num = 2
+    #Limit input to 200 max, so as not to break any servers:    
+    elif number > 200:
+        num = 200
+        res = "(Limiting to 200 dice): "
     else:
         num = number
     for i in range(num):
